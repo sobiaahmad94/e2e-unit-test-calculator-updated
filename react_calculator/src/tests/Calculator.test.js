@@ -113,7 +113,7 @@ describe('Calculator', () => {
   // 34 (clicking 3 and 4)
   // if statement if 3 and 4 are clicked right after each other store it as 34
   // actually might be an easier way as if they click two numbers then they should be concatenated
-  it('should concatenate multiple numbers together', () =>{
+  it('should concatenate multiple numbers together when they are clicked', () =>{
     const button3 = container.getByTestId('number3');
     const button4 = container.getByTestId('number4');
     // const button34 = str(button3) + str(button4);
@@ -122,11 +122,61 @@ describe('Calculator', () => {
     fireEvent.click(button3);
     fireEvent.click(button4);
     expect(runningTotal.textContent).toEqual('34');
-  
+  });
 
+  // 6) chain multiple operations together
+  // got stuck on this one *****
+  // it's cool, got it working, just created a wee version then went back to this and it worked :) 
+  // use 5 * 7 - 3 / 9 + 2 = whatever (BODMAS hahaha, division first)
+  it('should be able to chain multiple operators together', () => {
+    const button5 = container.getByTestId('number5');
+    const operatorMultiply = container.getByTestId('operator-multiply');
+    const button7 = container.getByTestId('number7');
+    const operatorSubtract = container.getByTestId('operator-subtract');
+    const button3 = container.getByTestId('number3');
+    const operatorDivide = container.getByTestId('operator-divide');
+    const button9 = container.getByTestId('number9');
+    const operatorAdd = container.getByTestId('operator-add');
+    const button2 = container.getByTestId('number2')
+    const operatorEquals = container.getByTestId('operator-equals');
+    const runningTotal = container.getByTestId('running-total');
+
+    fireEvent.click(button5);
+    fireEvent.click(operatorMultiply);
+    fireEvent.click(button7);
+    fireEvent.click(operatorSubtract);
+    fireEvent.click(button3);
+    fireEvent.click(operatorDivide);
+    fireEvent.click(button9);
+    fireEvent.click(operatorAdd);
+    fireEvent.click(button2);
+    fireEvent.click(operatorEquals);
+    fireEvent.click(runningTotal);
+    expect(runningTotal.textContent).toEqual('5.555555555555555');
 
   });
 
+  // second example :D
+  // I'll try a more basic version of this
+  // 7 + 1 - 2
+
+  // it('should be able to chain multiple operators together', () => {
+  //   const button7 = container.getByTestId('number7');
+  //   const operatorAdd = container.getByTestId('operator-add');
+  //   const button1 = container.getByTestId('number1');
+  //   const operatorSubtract = container.getByTestId('operator-subtract');
+  //   const button2 = container.getByTestId('number2');
+  //   const runningTotal = container.getByTestId('running-total');
+  
+  //   fireEvent.click(button7);
+  //   fireEvent.click(operatorAdd);
+  //   fireEvent.click(button1);
+  //   fireEvent.click(operatorSubtract);
+  //   fireEvent.click(button2);
+  //   fireEvent.click(runningTotal);
+  //   expect(runningTotal.textContent).toEqual('2');
+  // });
+  
 
 
 
@@ -155,8 +205,8 @@ describe('Calculator', () => {
   // 2) calculator.subtract() subtract 4 from 7 and get 3 [done]
   // 3) calculator.multiply() - multiply 3 by 5 and get 15 [doneee]
   // 4) calculator.divide() - divide 21 by 7 and get 3 [doneeeeeee]
-  // 5) calculator.numberClick() - concatenate multiple number button clicks
-  // 6) calculator.operatorClick() - chain multiple operations together
+  // 5) calculator.numberClick() - concatenate multiple number button clicks [doneeeee]
+  // 6) calculator.operatorClick() - chain multiple operations together [done x2]:)
   // 7) calculator.clearClick() - clear the running total without affecting the calculation
 
 
