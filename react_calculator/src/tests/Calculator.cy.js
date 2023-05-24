@@ -229,10 +229,10 @@ describe('Calculator', () => {
   // 1) Do the number buttons update the display of the running total? [doneee]
   // 2) Do the arithmetical operations update the display with the result of the operation? [doneeee]
   // E.g. does 2 + 2 - update the display to 4
-  // 3) Can multiple operations be chained together?
+  // 3) Can multiple operations be chained together? [done]
   // E.g. does 3 + 1 - 2 == 2
-  // 4) Is the output as expected for positive numbers
-  // 5) Is the output as expected for negative numbers
+  // 4) Is the output as expected for positive numbers [done]
+  // 5) Is the output as expected for negative numbers [omg so similar to the previous one haha]
   // 6) Is the output as expected for decimal numbers
   // 7) Is the output as expected for very large numbers
   // 8) What does the code do in exceptional circumstances? Specifically, if you divide by zero, what is the effect? Write a test to describe what you'd prefer to happen, and then correct the code to make that test pass (you will need to modify the Calculator model to meet this requirement).
@@ -296,6 +296,26 @@ describe('Calculator', () => {
         // have.text again:)
         cy.get('[data-testid="running-total"]').should('have.text', '3');
       });
+
+        // 4) Is the output as expected for positive numbers?
+        // 8 + 9 + 3 + 1 + 7 = 28 (positive number result)
+        it('Should output positive numbers when the total is a positive number when there is a sum calculated', () => {
+          cy.get('[data-testid="number8"]').click();
+          cy.get('[data-testid="operator-add"]').click();
+          cy.get('[data-testid="number9"]').click();
+          cy.get('[data-testid="operator-add"]').click();
+          cy.get('[data-testid="number3"]').click();
+          cy.get('[data-testid="operator-add"]').click();
+          cy.get('[data-testid="number1"]').click();
+          cy.get('[data-testid="operator-add"]').click();
+          cy.get('[data-testid="number7"]').click();
+          cy.get('[data-testid="equals-operator"]').click();
+
+
+          // should = expected
+          // have.text
+          cy.get('[data-testid="running-total"]').should('have.text', '28');
+        });
 
 
 
