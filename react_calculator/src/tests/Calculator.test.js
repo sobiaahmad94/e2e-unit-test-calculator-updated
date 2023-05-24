@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Calculator from '../containers/Calculator';
 import KeyPad from '../components/KeyPad';
 import { render, fireEvent } from '@testing-library/react';
@@ -177,6 +177,37 @@ describe('Calculator', () => {
   //   expect(runningTotal.textContent).toEqual('2');
   // });
   
+    // 7) clear the running total without affecting the calculation
+    // maybe I could do 1 + 2 = 3 so can check that and then set it to 0 
+    // omg actually could use useState for this
+    // STUCK ON THISSSS :S will ask tomorrow.
+    it('should be able to clear the running total without affecting the calculation', () => {
+
+      // useState (total is set to 0)
+      const [total, setTotal] = useState(0)
+
+      const button1 = container.getByTestId('number1');
+      const operatorAdd = container.getByTestId('operator-add');
+      const button2 = container.getByTestId('number2');
+      const operatorEquals = container.getByTestId('operator-equals');
+      const button3 = container.getByTestId('number3');
+      const runningTotal = container.getByTestId('running-total');
+
+
+      
+      fireEvent.click(button1);
+      fireEvent.click(operatorAdd);
+      fireEvent.click(button2);
+      fireEvent.click(operatorEquals);
+      fireEvent.click(button3);
+      fireEvent.click(runningTotal);
+      
+      setTotal((runningTotal.textContent))
+      expect(runningTotal.textContent).toEqual('0');
+
+    });
+
+
 
 
 
